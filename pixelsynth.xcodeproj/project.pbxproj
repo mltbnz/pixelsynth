@@ -1,0 +1,586 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9439F6731EAB5DA0004A4AD8 /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9439F6721EAB5DA0004A4AD8 /* ImageUtil.swift */; };
+		94403AD81EB13DC5001849A9 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94403AD11EB13888001849A9 /* AudioKit.framework */; };
+		94403AD91EB13DC5001849A9 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94403AD21EB13888001849A9 /* SnapKit.framework */; };
+		94403ADC1EB13EE9001849A9 /* AudioKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94403AD11EB13888001849A9 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		94403ADD1EB13EE9001849A9 /* SnapKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94403AD21EB13888001849A9 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9472F4CD1EA7CD8600683C3C /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9472F4CC1EA7CD8600683C3C /* CameraViewController.swift */; };
+		9472F4D11EA8104A00683C3C /* CameraSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9472F4D01EA8104A00683C3C /* CameraSessionController.swift */; };
+		9473F5E01EA7B2070088F358 /* Synthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473F5DF1EA7B2070088F358 /* Synthesizer.swift */; };
+		9473F5E61EA7BB2C0088F358 /* SynthesizerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473F5E51EA7BB2C0088F358 /* SynthesizerTest.swift */; };
+		9477BC1D1EA5F9FD0046454F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9477BC1C1EA5F9FD0046454F /* AppDelegate.swift */; };
+		9477BC241EA5F9FD0046454F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9477BC231EA5F9FD0046454F /* Assets.xcassets */; };
+		9477BC271EA5F9FD0046454F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9477BC251EA5F9FD0046454F /* LaunchScreen.storyboard */; };
+		9477BC321EA5F9FD0046454F /* pixelsynthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9477BC311EA5F9FD0046454F /* pixelsynthTests.swift */; };
+		9477BC441EA684500046454F /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9477BC431EA684500046454F /* Strings.swift */; };
+		94876ECE1EB31F6500DCC1D7 /* FrameExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94876ECD1EB31F6500DCC1D7 /* FrameExtractor.swift */; };
+		94C63C9A1EB3A64200D8D4BB /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C63C991EB3A64200D8D4BB /* opencv2.framework */; };
+		94C63C9F1EB3A6DF00D8D4BB /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94C63C9E1EB3A6DF00D8D4BB /* OpenCVWrapper.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9477BC2E1EA5F9FD0046454F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9477BC111EA5F9FC0046454F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9477BC181EA5F9FC0046454F;
+			remoteInfo = pixelsynth;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		94403ADB1EB13EDC001849A9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				94403ADC1EB13EE9001849A9 /* AudioKit.framework in CopyFiles */,
+				94403ADD1EB13EE9001849A9 /* SnapKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9473F5EB1EA7CB090088F358 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9439F6721EAB5DA0004A4AD8 /* ImageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
+		94403AD11EB13888001849A9 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = Carthage/Build/iOS/AudioKit.framework; sourceTree = "<group>"; };
+		94403AD21EB13888001849A9 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		9472F4CC1EA7CD8600683C3C /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		9472F4D01EA8104A00683C3C /* CameraSessionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraSessionController.swift; sourceTree = "<group>"; };
+		9473F5DF1EA7B2070088F358 /* Synthesizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Synthesizer.swift; path = pixelsynth/Synthesizer.swift; sourceTree = "<group>"; };
+		9473F5E51EA7BB2C0088F358 /* SynthesizerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynthesizerTest.swift; sourceTree = "<group>"; };
+		9477BC191EA5F9FC0046454F /* pixelsynth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pixelsynth.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9477BC1C1EA5F9FD0046454F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9477BC231EA5F9FD0046454F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9477BC261EA5F9FD0046454F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9477BC281EA5F9FD0046454F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9477BC2D1EA5F9FD0046454F /* pixelsynthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pixelsynthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9477BC311EA5F9FD0046454F /* pixelsynthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pixelsynthTests.swift; sourceTree = "<group>"; };
+		9477BC331EA5F9FD0046454F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9477BC431EA684500046454F /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		94876ECD1EB31F6500DCC1D7 /* FrameExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameExtractor.swift; sourceTree = "<group>"; };
+		94C63C991EB3A64200D8D4BB /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		94C63C9C1EB3A6DE00D8D4BB /* pixelsynth-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pixelsynth-Bridging-Header.h"; sourceTree = "<group>"; };
+		94C63C9D1EB3A6DF00D8D4BB /* OpenCVWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
+		94C63C9E1EB3A6DF00D8D4BB /* OpenCVWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
+		94C63CA01EB3A73900D8D4BB /* opencv-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "opencv-header.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9477BC161EA5F9FC0046454F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94C63C9A1EB3A64200D8D4BB /* opencv2.framework in Frameworks */,
+				94403AD81EB13DC5001849A9 /* AudioKit.framework in Frameworks */,
+				94403AD91EB13DC5001849A9 /* SnapKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9477BC2A1EA5F9FD0046454F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9472F4CB1EA7CD6400683C3C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9472F4CC1EA7CD8600683C3C /* CameraViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		9472F4CE1EA8102200683C3C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				94C63C9B1EB3A67900D8D4BB /* OpenCV */,
+				9472F4CF1EA8103000683C3C /* Camera */,
+				9477BC421EA6843C0046454F /* Synth */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		9472F4CF1EA8103000683C3C /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				9472F4D01EA8104A00683C3C /* CameraSessionController.swift */,
+				9439F6721EAB5DA0004A4AD8 /* ImageUtil.swift */,
+				94876ECD1EB31F6500DCC1D7 /* FrameExtractor.swift */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		9473F5E21EA7BACB0088F358 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				9472F4CB1EA7CD6400683C3C /* ViewController */,
+				9473F5E31EA7BAE00088F358 /* Storyboards */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		9473F5E31EA7BAE00088F358 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				9477BC251EA5F9FD0046454F /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		9473F5E41EA7BAF20088F358 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				9477BC1C1EA5F9FD0046454F /* AppDelegate.swift */,
+				9477BC231EA5F9FD0046454F /* Assets.xcassets */,
+				9477BC281EA5F9FD0046454F /* Info.plist */,
+				9477BC431EA684500046454F /* Strings.swift */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		9477BC101EA5F9FC0046454F = {
+			isa = PBXGroup;
+			children = (
+				9477BC1B1EA5F9FC0046454F /* pixelsynth */,
+				9477BC301EA5F9FD0046454F /* pixelsynthTests */,
+				9477BC1A1EA5F9FC0046454F /* Products */,
+				9477BC3F1EA6487B0046454F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9477BC1A1EA5F9FC0046454F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9477BC191EA5F9FC0046454F /* pixelsynth.app */,
+				9477BC2D1EA5F9FD0046454F /* pixelsynthTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9477BC1B1EA5F9FC0046454F /* pixelsynth */ = {
+			isa = PBXGroup;
+			children = (
+				9473F5E41EA7BAF20088F358 /* App */,
+				9472F4CE1EA8102200683C3C /* Components */,
+				9473F5E21EA7BACB0088F358 /* UI */,
+			);
+			path = pixelsynth;
+			sourceTree = "<group>";
+		};
+		9477BC301EA5F9FD0046454F /* pixelsynthTests */ = {
+			isa = PBXGroup;
+			children = (
+				9477BC331EA5F9FD0046454F /* Info.plist */,
+				9477BC311EA5F9FD0046454F /* pixelsynthTests.swift */,
+				9473F5E51EA7BB2C0088F358 /* SynthesizerTest.swift */,
+			);
+			path = pixelsynthTests;
+			sourceTree = "<group>";
+		};
+		9477BC3F1EA6487B0046454F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94C63C991EB3A64200D8D4BB /* opencv2.framework */,
+				94403AD11EB13888001849A9 /* AudioKit.framework */,
+				94403AD21EB13888001849A9 /* SnapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9477BC421EA6843C0046454F /* Synth */ = {
+			isa = PBXGroup;
+			children = (
+				9473F5DF1EA7B2070088F358 /* Synthesizer.swift */,
+			);
+			name = Synth;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		94C63C9B1EB3A67900D8D4BB /* OpenCV */ = {
+			isa = PBXGroup;
+			children = (
+				94C63C9D1EB3A6DF00D8D4BB /* OpenCVWrapper.h */,
+				94C63C9E1EB3A6DF00D8D4BB /* OpenCVWrapper.mm */,
+				94C63C9C1EB3A6DE00D8D4BB /* pixelsynth-Bridging-Header.h */,
+				94C63CA01EB3A73900D8D4BB /* opencv-header.h */,
+			);
+			name = OpenCV;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9477BC181EA5F9FC0046454F /* pixelsynth */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9477BC361EA5F9FD0046454F /* Build configuration list for PBXNativeTarget "pixelsynth" */;
+			buildPhases = (
+				9477BC151EA5F9FC0046454F /* Sources */,
+				9477BC161EA5F9FC0046454F /* Frameworks */,
+				9477BC171EA5F9FC0046454F /* Resources */,
+				94403ADB1EB13EDC001849A9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = pixelsynth;
+			productName = pixelsynth;
+			productReference = 9477BC191EA5F9FC0046454F /* pixelsynth.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9477BC2C1EA5F9FD0046454F /* pixelsynthTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9477BC391EA5F9FD0046454F /* Build configuration list for PBXNativeTarget "pixelsynthTests" */;
+			buildPhases = (
+				9477BC291EA5F9FD0046454F /* Sources */,
+				9477BC2A1EA5F9FD0046454F /* Frameworks */,
+				9477BC2B1EA5F9FD0046454F /* Resources */,
+				9473F5EB1EA7CB090088F358 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9477BC2F1EA5F9FD0046454F /* PBXTargetDependency */,
+			);
+			name = pixelsynthTests;
+			productName = pixelsynthTests;
+			productReference = 9477BC2D1EA5F9FD0046454F /* pixelsynthTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9477BC111EA5F9FC0046454F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Malte Bünz";
+				TargetAttributes = {
+					9477BC181EA5F9FC0046454F = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = QDDL89SBZ7;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
+					9477BC2C1EA5F9FD0046454F = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 9477BC181EA5F9FC0046454F;
+					};
+				};
+			};
+			buildConfigurationList = 9477BC141EA5F9FC0046454F /* Build configuration list for PBXProject "pixelsynth" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9477BC101EA5F9FC0046454F;
+			productRefGroup = 9477BC1A1EA5F9FC0046454F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9477BC181EA5F9FC0046454F /* pixelsynth */,
+				9477BC2C1EA5F9FD0046454F /* pixelsynthTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9477BC171EA5F9FC0046454F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9477BC271EA5F9FD0046454F /* LaunchScreen.storyboard in Resources */,
+				9477BC241EA5F9FD0046454F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9477BC2B1EA5F9FD0046454F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9477BC151EA5F9FC0046454F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9473F5E01EA7B2070088F358 /* Synthesizer.swift in Sources */,
+				9472F4D11EA8104A00683C3C /* CameraSessionController.swift in Sources */,
+				9472F4CD1EA7CD8600683C3C /* CameraViewController.swift in Sources */,
+				9439F6731EAB5DA0004A4AD8 /* ImageUtil.swift in Sources */,
+				9477BC441EA684500046454F /* Strings.swift in Sources */,
+				94876ECE1EB31F6500DCC1D7 /* FrameExtractor.swift in Sources */,
+				94C63C9F1EB3A6DF00D8D4BB /* OpenCVWrapper.mm in Sources */,
+				9477BC1D1EA5F9FD0046454F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9477BC291EA5F9FD0046454F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9473F5E61EA7BB2C0088F358 /* SynthesizerTest.swift in Sources */,
+				9477BC321EA5F9FD0046454F /* pixelsynthTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9477BC2F1EA5F9FD0046454F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9477BC181EA5F9FC0046454F /* pixelsynth */;
+			targetProxy = 9477BC2E1EA5F9FD0046454F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9477BC251EA5F9FD0046454F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9477BC261EA5F9FD0046454F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9477BC341EA5F9FD0046454F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9477BC351EA5F9FD0046454F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9477BC371EA5F9FD0046454F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = QDDL89SBZ7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = pixelsynth/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.mbnz.pixelsynth;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "pixelsynth/pixelsynth-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		9477BC381EA5F9FD0046454F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = QDDL89SBZ7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = pixelsynth/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.mbnz.pixelsynth;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "pixelsynth/pixelsynth-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		9477BC3A1EA5F9FD0046454F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = pixelsynthTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.mbnz.pixelsynth.pixelsynthTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pixelsynth.app/pixelsynth";
+			};
+			name = Debug;
+		};
+		9477BC3B1EA5F9FD0046454F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = pixelsynthTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.mbnz.pixelsynth.pixelsynthTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pixelsynth.app/pixelsynth";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9477BC141EA5F9FC0046454F /* Build configuration list for PBXProject "pixelsynth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9477BC341EA5F9FD0046454F /* Debug */,
+				9477BC351EA5F9FD0046454F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9477BC361EA5F9FD0046454F /* Build configuration list for PBXNativeTarget "pixelsynth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9477BC371EA5F9FD0046454F /* Debug */,
+				9477BC381EA5F9FD0046454F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9477BC391EA5F9FD0046454F /* Build configuration list for PBXNativeTarget "pixelsynthTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9477BC3A1EA5F9FD0046454F /* Debug */,
+				9477BC3B1EA5F9FD0046454F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9477BC111EA5F9FC0046454F /* Project object */;
+}
