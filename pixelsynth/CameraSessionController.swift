@@ -26,13 +26,6 @@ class CameraSessionController: NSObject {
     private var setupResult: SessionSetupResult = .success
     // Camera properties
     lazy var cameraSession = AVCaptureSession()
-    lazy var captureDevice: AVCaptureDevice? = {
-        let backCamera: AVCaptureDeviceType = .builtInWideAngleCamera
-        let position: AVCaptureDevicePosition = .back
-        return AVCaptureDeviceDiscoverySession(deviceTypes: [backCamera],
-                                               mediaType: AVMediaTypeVideo,
-                                               position: position).devices.first!
-    }()
     var sessionQueue: DispatchQueue! = DispatchQueue(label: Queues.sessionQueue.rawValue,
                                                      attributes: [],
                                                      autoreleaseFrequency: .workItem)
@@ -151,19 +144,69 @@ class CameraSessionController: NSObject {
         }
     }
     
-    private func selectCaptureDevice() -> AVCaptureDevice? {
-        let backCamera: AVCaptureDeviceType = .builtInWideAngleCamera
-        let position: AVCaptureDevicePosition = .back
-        return AVCaptureDeviceDiscoverySession(deviceTypes: [backCamera],
-                                               mediaType: AVMediaTypeVideo,
-                                               position: position).devices.first!
+    
+    
+    /**
+     Sets the capture device property.
+     #Cameraside #WideAngleCamera
+     */
+    private func captureDevice(with position: AVCaptureDevicePosition) -> AVCaptureDevice? {
+        let devices = AVCaptureDeviceDiscoverySession(deviceTypes: [.builtInWideAngleCamera,
+                                                                    .builtInDuoCamera,
+                                                                    .builtInTelephotoCamera],
+                                                      mediaType: AVMediaTypeVideo,
+                                                      position: .unspecified).devices
+        if let devices = devices {
+            for device in devices {
+                if device.position == position {
+                    return device
+                }
+            }
+        }
+        return nil
     }
+    
+    /**
+     Swaps the camera input between front and back camera
+     */
+    public func swapCamera() {
+        guard let input = cameraSession.inputs[0] as? AVCaptureDeviceInput else {
+            return
+        }
+        cameraSession.beginConfiguration()
+        defer {
+            cameraSession.commitConfiguration()
+        }
+        
+        var newDevice: AVCaptureDevice?
+        if input.device.position == .back {
+            newDevice = captureDevice(with: .front)
+        } else {
+            newDevice = captureDevice(with: .back)
+        }
+        
+        // Create new capture input
+        var deviceInput: AVCaptureDeviceInput!
+        do {
+            deviceInput = try AVCaptureDeviceInput(device: newDevice)
+        } catch let error {
+            print(error.localizedDescription)
+            return
+        }
+        
+        // Swap capture device inputs
+        cameraSession.removeInput(input)
+        cameraSession.addInput(deviceInput)
+    }
+    
     
     /**
      Adds an input to the camerasession
      */
     private func addVideoInput() {
-        guard let captureDevice = selectCaptureDevice() else { return }
+        guard let captureDevice = captureDevice(with: .back) else {
+            return
+        }
         guard let captureDeviceInput = try? AVCaptureDeviceInput(device: captureDevice) else { return }
         guard cameraSession.canAddInput(captureDeviceInput) else {
             print("Could not add video device input to the session")
@@ -215,7 +258,7 @@ class CameraSessionController: NSObject {
     func teardownCamera() {
         sessionQueue.async(execute: {
             self.cameraSession.stopRunning()
-            NotificationCenter.default.removeObserver(self.runtimeErrorHandlingObserver ?? nil)
+            NotificationCenter.default.removeObserver(self.runtimeErrorHandlingObserver!)
         })
     }
     

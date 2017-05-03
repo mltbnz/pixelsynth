@@ -13,11 +13,11 @@ import SnapKit
 class CameraViewController: UIViewController {
     
     // PROPERTIES
-    var cameraFrameExtractor = FrameExtractor()
+    var cameraSession = CameraSession()
     
     // TODO: Implement Observable property called renderingEnababled
     lazy var previewLayer: AVCaptureVideoPreviewLayer = {
-        let preview =  AVCaptureVideoPreviewLayer(session: self.cameraFrameExtractor.captureSession)
+        let preview =  AVCaptureVideoPreviewLayer(session: self.cameraSession.captureSession)
         preview?.bounds = CGRect(x: 0,
                                  y: 0,
                                  width: self.view.bounds.width,
@@ -35,18 +35,18 @@ class CameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         previewImageView.backgroundColor = .red
-        cameraFrameExtractor.delegate = self
+        cameraSession.delegate = self
         layoutViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        cameraFrameExtractor.startCamera()
+        cameraSession.startCamera()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        cameraFrameExtractor.teardownCamera()
+        cameraSession.teardownCamera()
     }
     
     

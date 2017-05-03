@@ -9,11 +9,13 @@
 import UIKit
 import AVFoundation
 
-//protocol FrameExtractorDelegate: class {
-//    func captured(image: UIImage)
-//}
+protocol FrameExtractorDelegate: class {
+    func captured(image: UIImage)
+}
 
-class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+class CameraSession: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+    
+    private let imageFactory = ImageFactory()
     
     private let position = AVCaptureDevicePosition.back
     private let quality = AVCaptureSessionPresetHigh
@@ -85,29 +87,88 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     private func configureSession() {
-        guard permissionGranted else { return }
+        guard permissionGranted else {
+            return
+        }
+        
         captureSession.sessionPreset = quality
-        guard let captureDevice = selectCaptureDevice() else { return }
-        guard let captureDeviceInput = try? AVCaptureDeviceInput(device: captureDevice) else { return }
-        guard captureSession.canAddInput(captureDeviceInput) else { return }
+        guard let captureDevice = captureDevice(with: .back),  let captureDeviceInput = try? AVCaptureDeviceInput(device: captureDevice) else {
+            return
+        }
+        guard captureSession.canAddInput(captureDeviceInput) else {
+            return
+        }
         captureSession.addInput(captureDeviceInput)
         let videoOutput = AVCaptureVideoDataOutput()
         videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "sample buffer"))
-        guard captureSession.canAddOutput(videoOutput) else { return }
+        guard captureSession.canAddOutput(videoOutput) else {
+            return
+        }
         captureSession.addOutput(videoOutput)
-        guard let connection = videoOutput.connection(withMediaType: AVFoundation.AVMediaTypeVideo) else { return }
-        guard connection.isVideoOrientationSupported else { return }
-        guard connection.isVideoMirroringSupported else { return }
+        guard let connection = videoOutput.connection(withMediaType: AVFoundation.AVMediaTypeVideo) else { 
+            return
+        }
+        guard connection.isVideoOrientationSupported else {
+            return
+        }
+        guard connection.isVideoMirroringSupported else {
+            return
+        }
         connection.videoOrientation = .portrait
         connection.isVideoMirrored = position == .front
     }
     
-    private func selectCaptureDevice() -> AVCaptureDevice? {
-        let backCamera: AVCaptureDeviceType = .builtInWideAngleCamera
-        let position: AVCaptureDevicePosition = .back
-        return AVCaptureDeviceDiscoverySession(deviceTypes: [backCamera],
-                                               mediaType: AVMediaTypeVideo,
-                                               position: position).devices.first!
+    /**
+     Sets the capture device property.
+     #Cameraside #WideAngleCamera
+     */
+    private func captureDevice(with position: AVCaptureDevicePosition) -> AVCaptureDevice? {
+        let devices = AVCaptureDeviceDiscoverySession(deviceTypes: [.builtInWideAngleCamera,
+                                                                    .builtInDuoCamera,
+                                                                    .builtInTelephotoCamera],
+                                                      mediaType: AVMediaTypeVideo,
+                                                      position: .unspecified).devices
+        if let devices = devices {
+            for device in devices {
+                if device.position == position {
+                    return device
+                }
+            }
+        }
+        return nil
+    }
+    
+    /**
+     Swaps the camera input between front and back camera
+     */
+    public func swapCamera() {
+        guard let input = captureSession.inputs[0] as? AVCaptureDeviceInput else {
+            return
+        }
+        captureSession.beginConfiguration()
+        defer {
+            captureSession.commitConfiguration()
+        }
+        
+        var newDevice: AVCaptureDevice?
+        if input.device.position == .back {
+            newDevice = captureDevice(with: .front)
+        } else {
+            newDevice = captureDevice(with: .back)
+        }
+        
+        // Create new capture input
+        var deviceInput: AVCaptureDeviceInput!
+        do {
+            deviceInput = try AVCaptureDeviceInput(device: newDevice)
+        } catch let error {
+            print(error.localizedDescription)
+            return
+        }
+        
+        // Swap capture device inputs
+        captureSession.removeInput(input)
+        captureSession.addInput(deviceInput)
     }
     
     /**
@@ -126,18 +187,11 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         }
     }
     
-    
-    // MARK: Sample buffer to UIImage conversion
-    private func imageFromSampleBuffer(sampleBuffer: CMSampleBuffer) -> UIImage? {
-        guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return nil }
-        let ciImage = CIImage(cvPixelBuffer: imageBuffer)
-        guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else { return nil }
-        return UIImage(cgImage: cgImage)
-    }
-    
     // MARK: AVCaptureVideoDataOutputSampleBufferDelegate
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-        guard let uiImage = imageFromSampleBuffer(sampleBuffer: sampleBuffer) else { return }
+        guard let uiImage = imageFactory.image(from: sampleBuffer) else {
+            return
+        }//imageFromSampleBuffer(sampleBuffer: sampleBuffer) else { return }
         DispatchQueue.main.async { [unowned self] in
             self.delegate?.captured(image: uiImage)
         }
