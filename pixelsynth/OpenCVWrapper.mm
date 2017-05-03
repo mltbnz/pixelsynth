@@ -7,11 +7,14 @@
 //
 
 #import "OpenCVWrapper.h"
+#import "UIImage+OpenCV.h"
 
 @implementation OpenCVWrapper
 
-- (int)tNumber {
-    return 3;
++ (UIImage *) convert2GreyscaleImage: (UIImage *)image {
+    cv::Mat uiToMat = [image cvMat];
+    return [UIImage imageWithCVMat:uiToMat
+                     andColorSpace:0];
 }
 
 @end
