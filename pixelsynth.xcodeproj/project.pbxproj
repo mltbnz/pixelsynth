@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9439F6731EAB5DA0004A4AD8 /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9439F6721EAB5DA0004A4AD8 /* ImageUtil.swift */; };
+		9439F6731EAB5DA0004A4AD8 /* ImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9439F6721EAB5DA0004A4AD8 /* ImageFactory.swift */; };
 		94403AD81EB13DC5001849A9 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94403AD11EB13888001849A9 /* AudioKit.framework */; };
 		94403AD91EB13DC5001849A9 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94403AD21EB13888001849A9 /* SnapKit.framework */; };
 		94403ADC1EB13EE9001849A9 /* AudioKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94403AD11EB13888001849A9 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		94403ADD1EB13EE9001849A9 /* SnapKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94403AD21EB13888001849A9 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9472F4CD1EA7CD8600683C3C /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9472F4CC1EA7CD8600683C3C /* CameraViewController.swift */; };
-		9472F4D11EA8104A00683C3C /* CameraSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9472F4D01EA8104A00683C3C /* CameraSessionController.swift */; };
 		9473F5E01EA7B2070088F358 /* Synthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473F5DF1EA7B2070088F358 /* Synthesizer.swift */; };
 		9473F5E61EA7BB2C0088F358 /* SynthesizerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473F5E51EA7BB2C0088F358 /* SynthesizerTest.swift */; };
 		9477BC1D1EA5F9FD0046454F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9477BC1C1EA5F9FD0046454F /* AppDelegate.swift */; };
@@ -21,9 +20,10 @@
 		9477BC271EA5F9FD0046454F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9477BC251EA5F9FD0046454F /* LaunchScreen.storyboard */; };
 		9477BC321EA5F9FD0046454F /* pixelsynthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9477BC311EA5F9FD0046454F /* pixelsynthTests.swift */; };
 		9477BC441EA684500046454F /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9477BC431EA684500046454F /* Strings.swift */; };
-		94876ECE1EB31F6500DCC1D7 /* FrameExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94876ECD1EB31F6500DCC1D7 /* FrameExtractor.swift */; };
+		94876ECE1EB31F6500DCC1D7 /* CameraSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94876ECD1EB31F6500DCC1D7 /* CameraSession.swift */; };
 		94C63C9A1EB3A64200D8D4BB /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C63C991EB3A64200D8D4BB /* opencv2.framework */; };
 		94C63C9F1EB3A6DF00D8D4BB /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94C63C9E1EB3A6DF00D8D4BB /* OpenCVWrapper.mm */; };
+		94F2D0F21EB3BFD400939A73 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94F2D0F11EB3BFD400939A73 /* UIImage+OpenCV.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +41,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 7;
+			dstSubfolderSpec = 10;
 			files = (
 				94403ADC1EB13EE9001849A9 /* AudioKit.framework in CopyFiles */,
 				94403ADD1EB13EE9001849A9 /* SnapKit.framework in CopyFiles */,
@@ -60,11 +60,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9439F6721EAB5DA0004A4AD8 /* ImageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
+		9439F6721EAB5DA0004A4AD8 /* ImageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFactory.swift; sourceTree = "<group>"; };
 		94403AD11EB13888001849A9 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = Carthage/Build/iOS/AudioKit.framework; sourceTree = "<group>"; };
 		94403AD21EB13888001849A9 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		9472F4CC1EA7CD8600683C3C /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		9472F4D01EA8104A00683C3C /* CameraSessionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraSessionController.swift; sourceTree = "<group>"; };
 		9473F5DF1EA7B2070088F358 /* Synthesizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Synthesizer.swift; path = pixelsynth/Synthesizer.swift; sourceTree = "<group>"; };
 		9473F5E51EA7BB2C0088F358 /* SynthesizerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynthesizerTest.swift; sourceTree = "<group>"; };
 		9477BC191EA5F9FC0046454F /* pixelsynth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pixelsynth.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,12 +75,14 @@
 		9477BC311EA5F9FD0046454F /* pixelsynthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pixelsynthTests.swift; sourceTree = "<group>"; };
 		9477BC331EA5F9FD0046454F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9477BC431EA684500046454F /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
-		94876ECD1EB31F6500DCC1D7 /* FrameExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameExtractor.swift; sourceTree = "<group>"; };
+		94876ECD1EB31F6500DCC1D7 /* CameraSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraSession.swift; sourceTree = "<group>"; };
 		94C63C991EB3A64200D8D4BB /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		94C63C9C1EB3A6DE00D8D4BB /* pixelsynth-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pixelsynth-Bridging-Header.h"; sourceTree = "<group>"; };
 		94C63C9D1EB3A6DF00D8D4BB /* OpenCVWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
 		94C63C9E1EB3A6DF00D8D4BB /* OpenCVWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
 		94C63CA01EB3A73900D8D4BB /* opencv-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "opencv-header.h"; sourceTree = "<group>"; };
+		94F2D0F01EB3BFD400939A73 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
+		94F2D0F11EB3BFD400939A73 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,9 +127,8 @@
 		9472F4CF1EA8103000683C3C /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				9472F4D01EA8104A00683C3C /* CameraSessionController.swift */,
-				9439F6721EAB5DA0004A4AD8 /* ImageUtil.swift */,
-				94876ECD1EB31F6500DCC1D7 /* FrameExtractor.swift */,
+				9439F6721EAB5DA0004A4AD8 /* ImageFactory.swift */,
+				94876ECD1EB31F6500DCC1D7 /* CameraSession.swift */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -226,6 +226,8 @@
 				94C63C9E1EB3A6DF00D8D4BB /* OpenCVWrapper.mm */,
 				94C63C9C1EB3A6DE00D8D4BB /* pixelsynth-Bridging-Header.h */,
 				94C63CA01EB3A73900D8D4BB /* opencv-header.h */,
+				94F2D0F01EB3BFD400939A73 /* UIImage+OpenCV.h */,
+				94F2D0F11EB3BFD400939A73 /* UIImage+OpenCV.mm */,
 			);
 			name = OpenCV;
 			sourceTree = "<group>";
@@ -337,11 +339,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9473F5E01EA7B2070088F358 /* Synthesizer.swift in Sources */,
-				9472F4D11EA8104A00683C3C /* CameraSessionController.swift in Sources */,
 				9472F4CD1EA7CD8600683C3C /* CameraViewController.swift in Sources */,
-				9439F6731EAB5DA0004A4AD8 /* ImageUtil.swift in Sources */,
+				9439F6731EAB5DA0004A4AD8 /* ImageFactory.swift in Sources */,
+				94F2D0F21EB3BFD400939A73 /* UIImage+OpenCV.mm in Sources */,
 				9477BC441EA684500046454F /* Strings.swift in Sources */,
-				94876ECE1EB31F6500DCC1D7 /* FrameExtractor.swift in Sources */,
+				94876ECE1EB31F6500DCC1D7 /* CameraSession.swift in Sources */,
 				94C63C9F1EB3A6DF00D8D4BB /* OpenCVWrapper.mm in Sources */,
 				9477BC1D1EA5F9FD0046454F /* AppDelegate.swift in Sources */,
 			);
