@@ -9,24 +9,12 @@
 import UIKit
 import AVFoundation
 import SnapKit
+import MetalKit
 
-class CameraViewController: UIViewController {
+class CameraViewController: MTKViewController {
     
-    // PROPERTIES
-    var cameraFrameExtractor = FrameExtractor()
-    
-    // TODO: Implement Observable property called renderingEnababled
-    lazy var previewLayer: AVCaptureVideoPreviewLayer = {
-        let preview =  AVCaptureVideoPreviewLayer(session: self.cameraFrameExtractor.captureSession)
-        preview?.bounds = CGRect(x: 0,
-                                 y: 0,
-                                 width: self.view.bounds.width,
-                                 height: self.view.bounds.height)
-        preview?.position = CGPoint(x: self.view.bounds.midX,
-                                    y: self.view.bounds.midY)
-        preview?.videoGravity = AVLayerVideoGravityResize
-        return preview!
-    }()
+    // MARK: PROPERTIES
+    var metalCameraSession: MetalCameraSession!
     
     // VIEW PROPERTIES
     lazy var previewImageView = UIImageView()
@@ -34,34 +22,37 @@ class CameraViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        previewImageView.backgroundColor = .red
-        cameraFrameExtractor.delegate = self
-        layoutViews()
+        metalCameraSession = MetalCameraSession(delegate: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        cameraFrameExtractor.startCamera()
+        metalCameraSession.start()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        cameraFrameExtractor.teardownCamera()
-    }
-    
-    
-    private func layoutViews() {
-        view.addSubview(previewImageView)
-        previewImageView.snp.makeConstraints { (make) in
-            make.width.equalToSuperview()
-            make.height.equalToSuperview()
-        }
+        metalCameraSession.stop()
     }
 }
 
-extension CameraViewController: FrameExtractorDelegate {
+extension CameraViewController: MetalCameraSessionDelegate {
     
-    func captured(image: UIImage) {
-        previewImageView.image = image
+    func metalCameraSession(_ session: MetalCameraSession, didReceiveFrameAs textures: [MTLTexture], with timestamp: Double) {
+        self.texture = textures[0]
+        
+        let _ = ImageSoundBridge.imageBrightnessValues(from: textures[0].toImage()!)
+//        print(values)
     }
+    
+    func metalCameraSession(_ session: MetalCameraSession, didUpdate state: MetalCameraSessionState, _ error: MetalCameraSessionError?) {
+        if error == .captureSessionRuntimeError {
+            metalCameraSession.start()
+        }
+        DispatchQueue.main.async {
+            self.title = "Metal camera: \(state)"
+        }
+        NSLog("Session changed state to \(state) with error: \(error?.localizedDescription ?? "None").")
+    }
+    
 }
