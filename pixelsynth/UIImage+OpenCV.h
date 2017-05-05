@@ -27,4 +27,7 @@ typedef enum : NSUInteger {
 - (cv::Mat)cvMat3;  // no alpha channel
 - (cv::Mat)cvGrayscaleMat;
 
+// Iterate through pixels
+
+
 @end

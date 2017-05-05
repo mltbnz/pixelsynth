@@ -13,5 +13,6 @@
 @interface OpenCVWrapper : NSObject
 
 + (UIImage *) convert2GreyscaleImage: (UIImage *)image;
++ (NSArray *) getPixelLineBrightntessValues: (UIImage *)image;
 
 @end
