@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9423A97D1EE7F3B000325F76 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9423A97C1EE7F3B000325F76 /* MetalView.swift */; };
+		9423A97F1EE7F52100325F76 /* MTLTexture+Threads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9423A97E1EE7F52100325F76 /* MTLTexture+Threads.swift */; };
 		9439F6731EAB5DA0004A4AD8 /* ImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9439F6721EAB5DA0004A4AD8 /* ImageFactory.swift */; };
 		94403AD81EB13DC5001849A9 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94403AD11EB13888001849A9 /* AudioKit.framework */; };
 		94403AD91EB13DC5001849A9 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94403AD21EB13888001849A9 /* SnapKit.framework */; };
@@ -22,15 +24,14 @@
 		9477BC271EA5F9FD0046454F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9477BC251EA5F9FD0046454F /* LaunchScreen.storyboard */; };
 		9477BC321EA5F9FD0046454F /* pixelsynthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9477BC311EA5F9FD0046454F /* pixelsynthTests.swift */; };
 		9477BC441EA684500046454F /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9477BC431EA684500046454F /* Strings.swift */; };
+		949D1AAE1ECC9F08000379ED /* Metalfarm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 949D1AAD1ECC9F08000379ED /* Metalfarm.mm */; };
 		94C63C9A1EB3A64200D8D4BB /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C63C991EB3A64200D8D4BB /* opencv2.framework */; };
 		94C63C9F1EB3A6DF00D8D4BB /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94C63C9E1EB3A6DF00D8D4BB /* OpenCVWrapper.mm */; };
 		94F2D0F21EB3BFD400939A73 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94F2D0F11EB3BFD400939A73 /* UIImage+OpenCV.mm */; };
 		94F9EFA61EBC9AA200ADE4CD /* MTKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F9EFA51EBC9AA200ADE4CD /* MTKViewController.swift */; };
 		94F9EFA81EBCA17D00ADE4CD /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 94F9EFA71EBCA17D00ADE4CD /* Shader.metal */; };
-		94F9EFAE1EBCB78700ADE4CD /* Grayscale.metal in Sources */ = {isa = PBXBuildFile; fileRef = 94F9EFAD1EBCB78700ADE4CD /* Grayscale.metal */; };
 		94F9EFB01EBCBA6C00ADE4CD /* MetalCameraSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F9EFAF1EBCBA6C00ADE4CD /* MetalCameraSession.swift */; };
-		94F9EFB21EBD076F00ADE4CD /* ImageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F9EFB11EBD076F00ADE4CD /* ImageFilter.swift */; };
-		94F9EFB41EBD0EC100ADE4CD /* MTLTexture+Sugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F9EFB31EBD0EC100ADE4CD /* MTLTexture+Sugar.swift */; };
+		94F9EFB41EBD0EC100ADE4CD /* MTLTexture+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F9EFB31EBD0EC100ADE4CD /* MTLTexture+UIImage.swift */; };
 		94F9EFB71EBD0F9800ADE4CD /* UIImage+Sugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F9EFB61EBD0F9800ADE4CD /* UIImage+Sugar.swift */; };
 		94F9EFB91EBD153700ADE4CD /* MetalCameraSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F9EFB81EBD153700ADE4CD /* MetalCameraSessionTests.swift */; };
 		94F9EFBB1EBD16EE00ADE4CD /* ImageSoundBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F9EFBA1EBD16ED00ADE4CD /* ImageSoundBridge.swift */; };
@@ -70,6 +71,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9423A97C1EE7F3B000325F76 /* MetalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
+		9423A97E1EE7F52100325F76 /* MTLTexture+Threads.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MTLTexture+Threads.swift"; sourceTree = "<group>"; };
 		9439F6721EAB5DA0004A4AD8 /* ImageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFactory.swift; sourceTree = "<group>"; };
 		94403AD11EB13888001849A9 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = Carthage/Build/iOS/AudioKit.framework; sourceTree = "<group>"; };
 		94403AD21EB13888001849A9 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
@@ -87,6 +90,8 @@
 		9477BC311EA5F9FD0046454F /* pixelsynthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pixelsynthTests.swift; sourceTree = "<group>"; };
 		9477BC331EA5F9FD0046454F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9477BC431EA684500046454F /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		949D1AAC1ECC9F08000379ED /* Metalfarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Metalfarm.h; sourceTree = "<group>"; };
+		949D1AAD1ECC9F08000379ED /* Metalfarm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Metalfarm.mm; sourceTree = "<group>"; };
 		94C63C991EB3A64200D8D4BB /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		94C63C9C1EB3A6DE00D8D4BB /* pixelsynth-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pixelsynth-Bridging-Header.h"; sourceTree = "<group>"; };
 		94C63C9D1EB3A6DF00D8D4BB /* OpenCVWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
@@ -96,10 +101,8 @@
 		94F2D0F11EB3BFD400939A73 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		94F9EFA51EBC9AA200ADE4CD /* MTKViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTKViewController.swift; sourceTree = "<group>"; };
 		94F9EFA71EBCA17D00ADE4CD /* Shader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
-		94F9EFAD1EBCB78700ADE4CD /* Grayscale.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Grayscale.metal; sourceTree = "<group>"; };
 		94F9EFAF1EBCBA6C00ADE4CD /* MetalCameraSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalCameraSession.swift; sourceTree = "<group>"; };
-		94F9EFB11EBD076F00ADE4CD /* ImageFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFilter.swift; sourceTree = "<group>"; };
-		94F9EFB31EBD0EC100ADE4CD /* MTLTexture+Sugar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MTLTexture+Sugar.swift"; sourceTree = "<group>"; };
+		94F9EFB31EBD0EC100ADE4CD /* MTLTexture+UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MTLTexture+UIImage.swift"; sourceTree = "<group>"; };
 		94F9EFB61EBD0F9800ADE4CD /* UIImage+Sugar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Sugar.swift"; sourceTree = "<group>"; };
 		94F9EFB81EBD153700ADE4CD /* MetalCameraSessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalCameraSessionTests.swift; sourceTree = "<group>"; };
 		94F9EFBA1EBD16ED00ADE4CD /* ImageSoundBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSoundBridge.swift; sourceTree = "<group>"; };
@@ -171,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				9472F4CB1EA7CD6400683C3C /* ViewController */,
+				9423A97C1EE7F3B000325F76 /* MetalView.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -260,6 +264,8 @@
 				94C63CA01EB3A73900D8D4BB /* opencv-header.h */,
 				94F2D0F01EB3BFD400939A73 /* UIImage+OpenCV.h */,
 				94F2D0F11EB3BFD400939A73 /* UIImage+OpenCV.mm */,
+				949D1AAC1ECC9F08000379ED /* Metalfarm.h */,
+				949D1AAD1ECC9F08000379ED /* Metalfarm.mm */,
 			);
 			name = OpenCV;
 			sourceTree = "<group>";
@@ -279,8 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				94F9EFA71EBCA17D00ADE4CD /* Shader.metal */,
-				94F9EFAD1EBCB78700ADE4CD /* Grayscale.metal */,
-				94F9EFB11EBD076F00ADE4CD /* ImageFilter.swift */,
 			);
 			name = Shader;
 			sourceTree = "<group>";
@@ -288,8 +292,9 @@
 		94F9EFB51EBD0EC900ADE4CD /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				94F9EFB31EBD0EC100ADE4CD /* MTLTexture+Sugar.swift */,
+				94F9EFB31EBD0EC100ADE4CD /* MTLTexture+UIImage.swift */,
 				94F9EFB61EBD0F9800ADE4CD /* UIImage+Sugar.swift */,
+				9423A97E1EE7F52100325F76 /* MTLTexture+Threads.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -400,14 +405,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				949D1AAE1ECC9F08000379ED /* Metalfarm.mm in Sources */,
 				94F9EFA81EBCA17D00ADE4CD /* Shader.metal in Sources */,
-				94F9EFB41EBD0EC100ADE4CD /* MTLTexture+Sugar.swift in Sources */,
+				94F9EFB41EBD0EC100ADE4CD /* MTLTexture+UIImage.swift in Sources */,
+				9423A97F1EE7F52100325F76 /* MTLTexture+Threads.swift in Sources */,
+				9423A97D1EE7F3B000325F76 /* MetalView.swift in Sources */,
 				94F9EFB01EBCBA6C00ADE4CD /* MetalCameraSession.swift in Sources */,
 				9473F5E01EA7B2070088F358 /* Synthesizer.swift in Sources */,
 				9472F4CD1EA7CD8600683C3C /* CameraViewController.swift in Sources */,
-				94F9EFAE1EBCB78700ADE4CD /* Grayscale.metal in Sources */,
 				9439F6731EAB5DA0004A4AD8 /* ImageFactory.swift in Sources */,
-				94F9EFB21EBD076F00ADE4CD /* ImageFilter.swift in Sources */,
 				944070941EBC941700A691F0 /* CameraTypes.swift in Sources */,
 				94F9EFA61EBC9AA200ADE4CD /* MTKViewController.swift in Sources */,
 				94F2D0F21EB3BFD400939A73 /* UIImage+OpenCV.mm in Sources */,

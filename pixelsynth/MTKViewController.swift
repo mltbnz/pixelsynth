@@ -70,22 +70,15 @@ open class MTKViewController: UIViewController {
      
      */
     fileprivate func initializeMetalView() {
-        #if arch(i386) || arch(x86_64)
-        #else
-            metalView = MTKView(frame: view.bounds, device: device)
-            metalView.delegate = self
-            metalView.framebufferOnly = true
-            metalView.colorPixelFormat = .bgra8Unorm
-            metalView.contentScaleFactor = UIScreen.main.scale
-            metalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            view.insertSubview(metalView, at: 0)
-        #endif
+        metalView = MetalView(frame: view.bounds, device: device)
+        metalView.delegate = self
+        view.insertSubview(metalView, at: 0)
     }
     
     #if arch(i386) || arch(x86_64)
     #else
     /// `UIViewController`'s view
-    internal var metalView: MTKView!
+    internal var metalView: MetalView!
     #endif
     
     /// Metal device
@@ -128,77 +121,72 @@ open class MTKViewController: UIViewController {
             return
         }
     }
-
+    
 }
 
-#if arch(i386) || arch(x86_64)
-#else
+// MARK: - MTKViewDelegate and rendering
+extension MTKViewController: MTKViewDelegate {
     
-    // MARK: - MTKViewDelegate and rendering
-    extension MTKViewController: MTKViewDelegate {
-        
-        public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-            NSLog("MTKView drawable size will change to \(size)")
-        }
-        
-        public func draw(in: MTKView) {
-            _ = semaphore.wait(timeout: DispatchTime.distantFuture)
-            
-            autoreleasepool {
-                guard
-                    var texture = texture,
-                    let device = device
-                    else {
-                        _ = semaphore.signal()
-                        return
-                }
-                
-                let commandBuffer = device.makeCommandQueue().makeCommandBuffer()
-                
-                willRenderTexture(&texture, withCommandBuffer: commandBuffer, device: device)
-                render(texture: texture, withCommandBuffer: commandBuffer, device: device)
-            }
-        }
-        
-        /**
-         Renders texture into the `UIViewController`'s view.
-         
-         - parameter texture:       Texture to be rendered
-         - parameter commandBuffer: Command buffer we will use for drawing
-         */
-        private func render(texture: MTLTexture, withCommandBuffer commandBuffer: MTLCommandBuffer, device: MTLDevice) {
+    public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+        NSLog("MTKView drawable size will change to \(size)")
+    }
+    public func draw(in: MTKView) {
+        _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+        autoreleasepool {
             guard
-                let currentRenderPassDescriptor = metalView.currentRenderPassDescriptor,
-                let currentDrawable = metalView.currentDrawable,
-                let renderPipelineState = renderPipelineState
+                var texture = texture,
+                let device = device
                 else {
-                    semaphore.signal()
+                    _ = semaphore.signal()
                     return
             }
-            
-            let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: currentRenderPassDescriptor)
-            encoder.pushDebugGroup("RenderFrame")
-            encoder.setRenderPipelineState(renderPipelineState)
-            encoder.setFragmentTexture(texture, at: 0)
-            encoder.drawPrimitives(type: .triangleStrip,
-                                   vertexStart: 0,
-                                   vertexCount: 4,
-                                   instanceCount: 1)
-            encoder.popDebugGroup()
-            encoder.endEncoding()
-            
-            
-            
-            commandBuffer.addScheduledHandler { [weak self] (buffer) in
-                guard let unwrappedSelf = self else { return }
-                
-                unwrappedSelf.didRenderTexture(texture, withCommandBuffer: buffer, device: device)
-                unwrappedSelf.semaphore.signal()
-            }
-            
-            commandBuffer.present(currentDrawable)
-            commandBuffer.commit()
+            let commandBuffer = device.makeCommandQueue().makeCommandBuffer()
+            willRenderTexture(&texture,
+                              withCommandBuffer: commandBuffer,
+                              device: device)
+            render(texture: texture,
+                   withCommandBuffer: commandBuffer,
+                   device: device)
         }
     }
     
-#endif
+    /**
+     Renders texture into the `UIViewController`'s view.
+     
+     - parameter texture:       Texture to be rendered
+     - parameter commandBuffer: Command buffer we will use for drawing
+     */
+    private func render(texture: MTLTexture, withCommandBuffer commandBuffer: MTLCommandBuffer, device: MTLDevice) {
+        guard
+            let currentRenderPassDescriptor = metalView.currentRenderPassDescriptor,
+            let currentDrawable = metalView.currentDrawable,
+            let renderPipelineState = renderPipelineState
+            else {
+                semaphore.signal()
+                return
+        }
+        
+        let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: currentRenderPassDescriptor)
+        encoder.pushDebugGroup("RenderFrame")
+        encoder.setRenderPipelineState(renderPipelineState)
+        encoder.setFragmentTexture(texture, at: 0)
+        encoder.drawPrimitives(type: .triangleStrip,
+                               vertexStart: 0,
+                               vertexCount: 4,
+                               instanceCount: 1)
+        encoder.popDebugGroup()
+        encoder.endEncoding()
+        
+        
+        
+        commandBuffer.addScheduledHandler { [weak self] (buffer) in
+            guard let unwrappedSelf = self else { return }
+            
+            unwrappedSelf.didRenderTexture(texture, withCommandBuffer: buffer, device: device)
+            unwrappedSelf.semaphore.signal()
+        }
+        
+        commandBuffer.present(currentDrawable)
+        commandBuffer.commit()
+    }
+}

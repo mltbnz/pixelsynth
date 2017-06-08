@@ -45,7 +45,9 @@ extension CameraViewController: MetalCameraSessionDelegate {
 //        print(values)
     }
     
-    func metalCameraSession(_ session: MetalCameraSession, didUpdate state: MetalCameraSessionState, _ error: MetalCameraSessionError?) {
+    func metalCameraSession(_ session: MetalCameraSession,
+                            didUpdate state: MetalCameraSessionState,
+                            _ error: MetalCameraSessionError?) {
         if error == .captureSessionRuntimeError {
             metalCameraSession.start()
         }

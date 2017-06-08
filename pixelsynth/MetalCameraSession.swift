@@ -75,6 +75,9 @@ public final class MetalCameraSession: NSObject {
     /// `MTLDevice` we need to initialize texture cache
     fileprivate var metalDevice = MTLCreateSystemDefaultDevice()
     
+    ///
+    var videoTextureCache: CVMetalTextureCache?
+    
     /// Current capture input device.
     internal var inputDevice: AVCaptureDeviceInput? {
         didSet {
@@ -99,7 +102,6 @@ public final class MetalCameraSession: NSObject {
     fileprivate var state: MetalCameraSessionState = .waiting {
         didSet {
             guard state != .error else { return }
-            
             delegate?.metalCameraSession(self,
                                          didUpdate: state,
                                          nil)
@@ -119,6 +121,11 @@ public final class MetalCameraSession: NSObject {
     public init(pixelFormat: MetalCameraPixelFormat = .rgb, captureDevicePosition: AVCaptureDevicePosition = .back, delegate: MetalCameraSessionDelegate? = nil) {
         self.pixelFormat = pixelFormat
         self.captureDevicePosition = captureDevicePosition
+        CVMetalTextureCacheCreate(kCFAllocatorDefault,
+                                  nil,
+                                  self.metalDevice!,
+                                  nil,
+                                  &videoTextureCache)
         self.delegate = delegate
         super.init();
         setupSession()
@@ -206,7 +213,11 @@ public final class MetalCameraSession: NSObject {
         #else
             guard
                 let metalDevice = metalDevice,
-                CVMetalTextureCacheCreate(kCFAllocatorDefault, nil, metalDevice, nil, &textureCache) == kCVReturnSuccess
+                CVMetalTextureCacheCreate(kCFAllocatorDefault,
+                                          nil,
+                                          metalDevice,
+                                          nil,
+                                          &textureCache) == kCVReturnSuccess
                 else {
                     throw MetalCameraSessionError.failedToCreateTextureCache
             }
@@ -309,14 +320,11 @@ public final class MetalCameraSession: NSObject {
         captureSession.removeInput(input)
         captureSession.addInput(deviceInput)
     }
-
+    
 }
 
 // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
 extension MetalCameraSession: AVCaptureVideoDataOutputSampleBufferDelegate {
-    
-    #if arch(i386) || arch(x86_64)
-    #else
     
     /**
      Converts a sample buffer received from camera to a Metal texture
@@ -328,7 +336,10 @@ extension MetalCameraSession: AVCaptureVideoDataOutputSampleBufferDelegate {
      
      - returns: Metal texture or nil
      */
-    private func texture(sampleBuffer: CMSampleBuffer?, textureCache: CVMetalTextureCache?, planeIndex: Int = 0, pixelFormat: MTLPixelFormat = .bgra8Unorm) throws -> MTLTexture {
+    private func texture(sampleBuffer: CMSampleBuffer?,
+                         textureCache: CVMetalTextureCache?,
+                         planeIndex: Int = 0,
+                         pixelFormat: MTLPixelFormat = .bgra8Unorm) throws -> MTLTexture {
         guard let sampleBuffer = sampleBuffer else {
             throw MetalCameraSessionError.missingSampleBuffer
         }
@@ -345,7 +356,15 @@ extension MetalCameraSession: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         var imageTexture: CVMetalTexture?
         
-        let result = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, imageBuffer, nil, pixelFormat, width, height, planeIndex, &imageTexture)
+        let result = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault,
+                                                               textureCache,
+                                                               imageBuffer,
+                                                               nil,
+                                                               pixelFormat,
+                                                               width,
+                                                               height,
+                                                               planeIndex,
+                                                               &imageTexture)
         
         guard
             let unwrappedImageTexture = imageTexture,
@@ -358,11 +377,10 @@ extension MetalCameraSession: AVCaptureVideoDataOutputSampleBufferDelegate {
         return texture
     }
     
+    
     /**
      Strips out the timestamp value out of the sample buffer received from camera.
-     
      - parameter sampleBuffer: Sample buffer with the frame data
-     
      - returns: Double value for a timestamp in seconds or nil
      */
     private func timestamp(sampleBuffer: CMSampleBuffer?) throws -> Double {
@@ -379,17 +397,41 @@ extension MetalCameraSession: AVCaptureVideoDataOutputSampleBufferDelegate {
         return (Double)(time.value) / (Double)(time.timescale);
     }
     
+    private func process(_ sampleBuffer: CMSampleBuffer) {
+        let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
+        var cbcrTextureRef: CVMetalTexture?
+        let cbcrWidth = CVPixelBufferGetWidthOfPlane(pixelBuffer!, 1);
+        let cbcrHeight = CVPixelBufferGetHeightOfPlane(pixelBuffer!, 1);
+        CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault,
+                                                  videoTextureCache!,
+                                                  pixelBuffer!,
+                                                  nil,
+                                                  .rg8Unorm,
+                                                  cbcrWidth,
+                                                  cbcrHeight,
+                                                  1,
+                                                  &cbcrTextureRef)
+    }
+    
+    
     @objc public func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+        process(sampleBuffer)
         do {
             var textures: [MTLTexture]!
-            
             switch pixelFormat {
             case .rgb:
-                let textureRGB = try texture(sampleBuffer: sampleBuffer, textureCache: textureCache)
+                let textureRGB = try texture(sampleBuffer: sampleBuffer,
+                                             textureCache: textureCache)
                 textures = [textureRGB]
             case .yCbCr:
-                let textureY = try texture(sampleBuffer: sampleBuffer, textureCache: textureCache, planeIndex: 0, pixelFormat: .r8Unorm)
-                let textureCbCr = try texture(sampleBuffer: sampleBuffer, textureCache: textureCache, planeIndex: 1, pixelFormat: .rg8Unorm)
+                let textureY = try texture(sampleBuffer: sampleBuffer,
+                                           textureCache: textureCache,
+                                           planeIndex: 0,
+                                           pixelFormat: .r8Unorm)
+                let textureCbCr = try texture(sampleBuffer: sampleBuffer,
+                                              textureCache: textureCache,
+                                              planeIndex: 1,
+                                              pixelFormat: .rg8Unorm)
                 textures = [textureY, textureCbCr]
             }
             
@@ -409,6 +451,5 @@ extension MetalCameraSession: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
     }
     
-    #endif
     
 }

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import <opencv2/opencv.hpp>
 #import "opencv-header.h"
 
 typedef enum : NSUInteger {
