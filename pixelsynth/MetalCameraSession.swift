@@ -68,8 +68,8 @@ public final class MetalCameraSession: NSObject {
     
     #if arch(i386) || arch(x86_64)
     #else
+        internal var textureCache: CVMetalTextureCache?
     /// Texture cache we will use for converting frame images to textures
-    internal var textureCache: CVMetalTextureCache?
     #endif
     
     /// `MTLDevice` we need to initialize texture cache
@@ -109,14 +109,11 @@ public final class MetalCameraSession: NSObject {
     }
     
     // MARK: Lifecycle
-    
     /**
      initialized a new instance, providing optional values.
-     
      - parameter pixelFormat:           Pixel format. Defaults to `.RGB`
      - parameter captureDevicePosition: Camera to be used for capturing. Defaults to `.Back`.
      - parameter delegate:              Delegate. Defaults to `nil`.
-     
      */
     public init(pixelFormat: MetalCameraPixelFormat = .rgb, captureDevicePosition: AVCaptureDevicePosition = .back, delegate: MetalCameraSessionDelegate? = nil) {
         self.pixelFormat = pixelFormat
