@@ -8,18 +8,23 @@
 
 import Foundation
 
-enum Properties: String {
-    case frequency = "Frequency"
+enum Properties {
+    static let Frequency = "Frequency"
+}
+
+enum Queues {
+    static let CameraSessionController = "CameraSessionController Session"
+    static let SessionQueue =  "session queue"
+    static let VideoDataQueue = "video data queue"
+    static let MetalCameraSessionQueue = "MetalCameraSessionQueue"
+}
+
+enum Notifications {
+    static let CouldNotUseCamera = "Could not use camera!"
+    static let MissingCameraPermission = "This application does not have permission to use camera. Please update your privacy settings."
+}
+
+enum Exceptions {
+    static let delegate = "MetalCameraSession calls delegate with an updated state and error."
     
-}
-
-enum Queues: String {
-    case cameraSessionController = "CameraSessionController Session"
-    case sessionQueue =  "session queue"
-    case videoDataQueue = "video data queue"
-}
-
-enum Notifications: String {
-    case couldNotUseCamera = "Could not use camera!"
-    case missingCameraPermission = "This application does not have permission to use camera. Please update your privacy settings."
 }

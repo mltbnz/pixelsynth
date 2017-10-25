@@ -9,7 +9,7 @@
 import XCTest
 import AVFoundation
 
-@testable import Metal_Camera
+@testable import pixelsynth
 
 class MetalCameraSessionTests: XCTestCase {
     
@@ -18,7 +18,7 @@ class MetalCameraSessionTests: XCTestCase {
      */
     func testErrorWithoutDeviceAccess() {
         /// A class faking `MetalCameraCaptureDevice` that would mock access requests and devices availability
-        class StubCaptureDevice: MetalCameraCaptureDevice {
+        class StubCaptureDevice: CameraCaptureDevice {
             override func requestAccessForMediaType(_ mediaType: String!, completionHandler handler: ((Bool) -> Void)!) { handler(false) }
         }
         
@@ -46,7 +46,7 @@ class MetalCameraSessionTests: XCTestCase {
      */
     func testStateWithDeviceAccess() {
         /// A class faking `MetalCameraCaptureDevice` that would mock access requests and devices availability
-        class StubCaptureDevice: MetalCameraCaptureDevice {
+        class StubCaptureDevice: CameraCaptureDevice {
             override func requestAccessForMediaType(_ mediaType: String!, completionHandler handler: ((Bool) -> Void)!) { handler(true) }
         }
         
@@ -74,9 +74,9 @@ class MetalCameraSessionTests: XCTestCase {
      */
     func testErrorWithNoHardwareAvailable() {
         /// A class faking `MetalCameraCaptureDevice` that would mock access requests and devices availability
-        class StubCaptureDevice: MetalCameraCaptureDevice {
+        class StubCaptureDevice: CameraCaptureDevice {
             override func requestAccessForMediaType(_ mediaType: String!, completionHandler handler: ((Bool) -> Void)!) { handler(true) }
-            override func device(mediaType: String, position: AVCaptureDevicePosition) -> AVCaptureDevice? { return nil }
+            override func device(mediaType: String, position: AVCaptureDevice.Position) -> AVCaptureDevice? { return nil }
         }
         
         let delegate = ErrorTrackingDelegate()

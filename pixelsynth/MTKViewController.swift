@@ -101,7 +101,7 @@ open class MTKViewController: UIViewController {
     fileprivate func initializeRenderPipelineState() {
         guard
             let device = device,
-            let library = device.newDefaultLibrary()
+            let library = device.makeDefaultLibrary()
             else { return }
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
         pipelineDescriptor.sampleCount = 1
@@ -140,12 +140,12 @@ extension MTKViewController: MTKViewDelegate {
                     _ = semaphore.signal()
                     return
             }
-            let commandBuffer = device.makeCommandQueue().makeCommandBuffer()
+            let commandBuffer = device.makeCommandQueue()?.makeCommandBuffer()
             willRenderTexture(&texture,
-                              withCommandBuffer: commandBuffer,
+                              withCommandBuffer: commandBuffer!,
                               device: device)
             render(texture: texture,
-                   withCommandBuffer: commandBuffer,
+                   withCommandBuffer: commandBuffer!,
                    device: device)
         }
     }
@@ -167,15 +167,15 @@ extension MTKViewController: MTKViewDelegate {
         }
         
         let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: currentRenderPassDescriptor)
-        encoder.pushDebugGroup("RenderFrame")
-        encoder.setRenderPipelineState(renderPipelineState)
-        encoder.setFragmentTexture(texture, at: 0)
-        encoder.drawPrimitives(type: .triangleStrip,
+        encoder?.pushDebugGroup("RenderFrame")
+        encoder?.setRenderPipelineState(renderPipelineState)
+        encoder?.setFragmentTexture(texture, index: 0)
+        encoder?.drawPrimitives(type: .triangleStrip,
                                vertexStart: 0,
                                vertexCount: 4,
                                instanceCount: 1)
-        encoder.popDebugGroup()
-        encoder.endEncoding()
+        encoder?.popDebugGroup()
+        encoder?.endEncoding()
         
         
         

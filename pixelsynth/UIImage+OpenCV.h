@@ -23,7 +23,6 @@ typedef enum : NSUInteger {
 
 //UIImage to cv::Mat
 - (cv::Mat)cvMat;
-- (cv::Mat)cvMat3;  // no alpha channel
 - (cv::Mat)cvGrayscaleMat;
 
 // Iterate through pixels
