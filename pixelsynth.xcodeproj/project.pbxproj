@@ -21,6 +21,8 @@
 		9477BC321EA5F9FD0046454F /* pixelsynthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9477BC311EA5F9FD0046454F /* pixelsynthTests.swift */; };
 		9477BC441EA684500046454F /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9477BC431EA684500046454F /* Strings.swift */; };
 		947C7E211FA11240001D6BB1 /* MetalTestingDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947C7E201FA11240001D6BB1 /* MetalTestingDelegates.swift */; };
+		94A46E77204706F000B7DC11 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A46E75204706F000B7DC11 /* AudioKit.framework */; };
+		94A46E78204706F000B7DC11 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A46E76204706F000B7DC11 /* AudioKitUI.framework */; };
 		94C63C9A1EB3A64200D8D4BB /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C63C991EB3A64200D8D4BB /* opencv2.framework */; };
 		94C63C9F1EB3A6DF00D8D4BB /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94C63C9E1EB3A6DF00D8D4BB /* OpenCVWrapper.mm */; };
 		94F2D0F21EB3BFD400939A73 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 94F2D0F11EB3BFD400939A73 /* UIImage+OpenCV.mm */; };
@@ -84,6 +86,8 @@
 		9477BC331EA5F9FD0046454F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9477BC431EA684500046454F /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		947C7E201FA11240001D6BB1 /* MetalTestingDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalTestingDelegates.swift; sourceTree = "<group>"; };
+		94A46E75204706F000B7DC11 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = Carthage/Build/iOS/AudioKit.framework; sourceTree = "<group>"; };
+		94A46E76204706F000B7DC11 /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKitUI.framework; path = Carthage/Build/iOS/AudioKitUI.framework; sourceTree = "<group>"; };
 		94C63C991EB3A64200D8D4BB /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		94C63C9C1EB3A6DE00D8D4BB /* pixelsynth-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pixelsynth-Bridging-Header.h"; sourceTree = "<group>"; };
 		94C63C9D1EB3A6DF00D8D4BB /* OpenCVWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94A46E78204706F000B7DC11 /* AudioKitUI.framework in Frameworks */,
+				94A46E77204706F000B7DC11 /* AudioKit.framework in Frameworks */,
 				94C63C9A1EB3A64200D8D4BB /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,6 +236,8 @@
 		9477BC3F1EA6487B0046454F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				94A46E75204706F000B7DC11 /* AudioKit.framework */,
+				94A46E76204706F000B7DC11 /* AudioKitUI.framework */,
 				94C63C991EB3A64200D8D4BB /* opencv2.framework */,
 			);
 			name = Frameworks;
@@ -297,6 +305,7 @@
 				9477BC161EA5F9FC0046454F /* Frameworks */,
 				9477BC171EA5F9FC0046454F /* Resources */,
 				947C7E1F1FA10BDB001D6BB1 /* Embed Frameworks */,
+				94A46E742046FC6C00B7DC11 /* 📦 Copy Carthage */,
 			);
 			buildRules = (
 			);
@@ -388,6 +397,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		94A46E742046FC6C00B7DC11 /* 📦 Copy Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/AudioKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AudioKitUI.framework",
+			);
+			name = "📦 Copy Carthage";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9477BC151EA5F9FC0046454F /* Sources */ = {

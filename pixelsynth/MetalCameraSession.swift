@@ -432,6 +432,4 @@ extension MetalCameraSession: AVCaptureVideoDataOutputSampleBufferDelegate {
              */
         }
     }
-    
-    
 }
