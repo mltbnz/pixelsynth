@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mltbnz/pixelsynth.svg?branch=develop)](https://travis-ci.org/mltbnz/pixelsynth)
+
 # pixelsynth
 Pixel line Synthesizer
 
