@@ -14,6 +14,7 @@ class CameraViewController: MTKViewController {
     
     // MARK: PROPERTIES
     var metalCameraSession: MetalCameraSession!
+    var soundBridge: ImageSoundBridge!
     
     // VIEW PROPERTIES
     lazy var previewImageView = UIImageView()
@@ -21,7 +22,9 @@ class CameraViewController: MTKViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        metalCameraSession = MetalCameraSession(delegate: self)
+        
+        self.metalCameraSession = MetalCameraSession(delegate: self)
+        soundBridge = ImageSoundBridge()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,11 +40,13 @@ class CameraViewController: MTKViewController {
 
 extension CameraViewController: MetalCameraSessionDelegate {
     
+    /**
+     Gets the MTLTexture Buffer.
+     From here you can process the pixel values.
+     */
     func metalCameraSession(_ session: MetalCameraSession, didReceiveFrameAs textures: [MTLTexture], with timestamp: Double) {
         self.texture = textures[0]
-        
-        let _ = ImageSoundBridge.imageBrightnessValues(from: textures[0].toImage()!)
-//        print(values)
+        let _ = soundBridge.imageBrightnessValues(from: textures[0].toImage()!)
     }
     
     func metalCameraSession(_ session: MetalCameraSession,

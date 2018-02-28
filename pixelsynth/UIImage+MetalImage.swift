@@ -10,7 +10,7 @@ import Foundation
 
 public extension UIImage {
     
-    public func toMTLTexture()-> MTLTexture {
+    public func toMTLTexture() -> MTLTexture {
         let imageRef: CGImage = self.cgImage!
         let width: Int = imageRef.width
         let height: Int = imageRef.height

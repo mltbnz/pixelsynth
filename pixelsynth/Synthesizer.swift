@@ -27,7 +27,11 @@ struct Synthesizer {
         AudioKit.output = mixer
         mixer.connect(morph)
         morph.start()
-        AudioKit.start()
+        do {
+            try AudioKit.start()
+        } catch {
+            print("")
+        }
     }
     
     public func toggleMorph() {

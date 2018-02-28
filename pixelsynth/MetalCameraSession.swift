@@ -397,24 +397,9 @@ extension MetalCameraSession: AVCaptureVideoDataOutputSampleBufferDelegate {
         return (Double)(time.value) / (Double)(time.timescale);
     }
     
-    private func process(_ sampleBuffer: CMSampleBuffer) {
-        let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
-        var cbcrTextureRef: CVMetalTexture?
-        let cbcrWidth = CVPixelBufferGetWidthOfPlane(pixelBuffer!, 1);
-        let cbcrHeight = CVPixelBufferGetHeightOfPlane(pixelBuffer!, 1);
-        CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault,
-                                                  videoTextureCache!,
-                                                  pixelBuffer!,
-                                                  nil,
-                                                  .rg8Unorm,
-                                                  cbcrWidth,
-                                                  cbcrHeight,
-                                                  1,
-                                                  &cbcrTextureRef)
-    }
-    
-    @objc public func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        process(sampleBuffer)
+    @objc public func captureOutput(_ captureOutput: AVCaptureOutput,
+                                    didOutput sampleBuffer: CMSampleBuffer,
+                                    from connection: AVCaptureConnection) {
         do {
             var textures: [MTLTexture]!
             switch pixelFormat {
@@ -433,9 +418,7 @@ extension MetalCameraSession: AVCaptureVideoDataOutputSampleBufferDelegate {
                                               pixelFormat: .rg8Unorm)
                 textures = [textureY, textureCbCr]
             }
-            
             let timestamp = try self.timestamp(sampleBuffer: sampleBuffer)
-            
             delegate?.metalCameraSession(self,
                                          didReceiveFrameAs: textures,
                                          with: timestamp)
